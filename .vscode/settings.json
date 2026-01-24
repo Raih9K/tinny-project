@@ -51,7 +51,6 @@
   },
 
   // Workbench - DARK THEME
-  "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.productIconTheme": "fluent-icons",
   "workbench.startupEditor": "none",
   "workbench.sideBar.location": "left",
@@ -174,7 +173,6 @@
   "bracketPairColorizer.depreciation-notice": false,
 
   // Office & Other Extensions
-  "vscode-office.editorTheme": "Dark",
   "sherlock.userId": "cec1c5cf-e19e-4452-92d6-73aace2bfc4b",
   "geminicodeassist.project": "integrated-keel-0xmd0",
 
