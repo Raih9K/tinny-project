@@ -1,24 +1,44 @@
 {
   "remote.antigravityDevContainers.experimental.disableServerChecksum": true,
   "remote.antigravitySSH.experimental.disableServerChecksum": true,
-  "editor.fontFamily": "VT323, Courier Prime Code, Cascadia Code, Source Code Pro, IBM Plex Mono, Consolas, Fira Code, JetBrains Mono",
+
+  // Editor Font Settings (Cascadia Code - Best Overall)
+  "editor.fontFamily": "'Cascadia Code', 'JetBrains Mono', 'Fira Code', Consolas, monospace",
   "editor.fontLigatures": true,
-  "editor.fontSize": 15,
+  "editor.fontSize": 14,
+  "editor.fontWeight": "normal",
+  "editor.fontVariations": false,
+  "editor.lineHeight": 22,
+
+  // Editor Behavior
   "editor.wordWrap": "on",
   "editor.renderWhitespace": "none",
   "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "smooth",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit"
   },
+  "editor.codeActions.triggerOnFocusChange": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "editor.minimap.enabled": false,
   "editor.scrollBeyondLastLine": false,
   "editor.smoothScrolling": true,
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+
+  // Terminal Font Settings
+  "terminal.integrated.fontFamily": "Consolas,'Cascadia Code', 'JetBrains Mono', monospace",
+  "terminal.integrated.fontSize": 17,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+
+  // Files
   "files.autoSave": "afterDelay",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
@@ -29,26 +49,73 @@
     "**/test-results": true,
     "**/dist": true
   },
+
+  // Workbench - DARK THEME
+  "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.productIconTheme": "fluent-icons",
   "workbench.startupEditor": "none",
   "workbench.sideBar.location": "left",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.tree.indent": 20,
+  "workbench.activityBar.location":,
+
+  // Explorer
   "symbols.hidesExplorerArrows": false,
   "breadcrumbs.enabled": true,
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+
+  // Git
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
+  "git.decorations.enabled": true,
+
+  // Search
   "search.exclude": {
     "**/node_modules": true,
     "**/playwright-report": true,
     "**/test-results": true
   },
+
+  // Privacy & Updates
   "telemetry.telemetryLevel": "off",
   "update.mode": "manual",
   "extensions.autoUpdate": false,
-  "editor.guides.bracketPairs": true,
+
+  // Language Specific
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // TODO Tree
   "todo-tree.general.tagGroups": {},
   "todo-tree.general.tags": [
     "BUG",
@@ -98,42 +165,32 @@
     "fixme",
     "bug"
   ],
+
+  // Bracket Pair Colorizer (Deprecated - now built-in)
   "bracketPairColorizer.showBracketsInGutter": true,
   "bracketPairColorizer.showBracketsInRuler": true,
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.forceIterationColorCycle": true,
-  "explorer.fileNesting.patterns": {
-    "*.ts": "${capture}.js",
-    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-    "*.jsx": "${capture}.js",
-    "*.tsx": "${capture}.ts",
-    "tsconfig.json": "tsconfig.*.json",
-    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
-    "*.sqlite": "${capture}.${extname}-*",
-    "*.db": "${capture}.${extname}-*",
-    "*.sqlite3": "${capture}.${extname}-*",
-    "*.db3": "${capture}.${extname}-*",
-    "*.sdb": "${capture}.${extname}-*",
-    "*.s3db": "${capture}.${extname}-*"
-  },
-  "vscode-office.editorTheme": "Light",
-  "workbench.colorTheme": "Tokyo Night AltSynt",
-  "explorer.confirmDelete": false,
+  "bracketPairColorizer.depreciation-notice": false,
+
+  // Office & Other Extensions
+  "vscode-office.editorTheme": "Dark",
   "sherlock.userId": "cec1c5cf-e19e-4452-92d6-73aace2bfc4b",
   "geminicodeassist.project": "integrated-keel-0xmd0",
-  "editor.codeActions.triggerOnFocusChange": true,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "bracketPairColorizer.depreciation-notice": false,
+
+  // Snyk
   "snyk.advanced.cliPath": "C:\\Users\\Raihan Khan\\AppData\\Local\\snyk\\vscode-cli\\snyk-win.exe",
   "snyk.securityAtInception.autoConfigureSnykMcpServer": true,
   "snyk.securityAtInception.executionFrequency": "On Code Generation",
   "snyk.yesWelcomeNotification": false,
-  "editor.fontWeight": "normal",
-  "editor.fontVariations": false,
-  "snyk.advanced.autoSelectOrganization": true
+  "snyk.advanced.autoSelectOrganization": true,
+
+  // Window
+  "window.zoomLevel": 0,
+  "window.menuBarVisibility": "toggle",
+
+  // Prettier
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.tabWidth": 2
 }
