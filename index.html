@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tinny Project - Ultimate Tool Suite</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Fira+Code:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo-container">
+          <i data-lucide="zap" class="logo-icon"></i>
+          <span class="logo-text">Tinny Project</span>
+        </div>
+
+        <nav class="nav-links">
+          <div class="nav-item active" data-view="dashboard">
+            <i data-lucide="layout-dashboard"></i>
+            <span>Dashboard</span>
+          </div>
+          <div class="nav-item" data-view="code-verter">
+            <i data-lucide="code-2"></i>
+            <span>CodeVerter</span>
+          </div>
+          <div class="nav-item" data-view="py-lingo">
+            <i data-lucide="terminal"></i>
+            <span>PyLingo</span>
+          </div>
+          <div class="nav-item" data-view="lang-tutor">
+            <i data-lucide="languages"></i>
+            <span>Language Tutor</span>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer mt-4">
+          <p class="text-sm text-muted">Powered by Claude AI</p>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Dashboard / Home View -->
+        <section id="dashboard" class="view-container active">
+          <div class="hero mb-8">
+            <h1 class="text-4xl font-bold mb-2">Welcome to your Tool Suite</h1>
+            <p class="text-muted text-lg">
+              Select a tool from the sidebar to get started.
+            </p>
+          </div>
+
+          <div class="converter-grid">
+            <div
+              class="card cursor-pointer hover-scale"
+              onclick="switchView('code-verter')"
+            >
+              <i data-lucide="code-2" class="text-primary mb-2 w-10 h-10"></i>
+              <h3 class="font-bold text-xl mb-1">CodeVerter</h3>
+              <p class="text-muted text-sm">
+                Convert code between 25+ programming languages instantly.
+              </p>
+            </div>
+            <div
+              class="card cursor-pointer hover-scale"
+              onclick="switchView('py-lingo')"
+            >
+              <i data-lucide="terminal" class="text-indigo mb-2 w-10 h-10"></i>
+              <h3 class="font-bold text-xl mb-1">PyLingo</h3>
+              <p class="text-muted text-sm">
+                Interactive Python learning platform with 15 challenge levels.
+              </p>
+            </div>
+            <div
+              class="card cursor-pointer hover-scale"
+              onclick="switchView('lang-tutor')"
+            >
+              <i data-lucide="languages" class="text-purple mb-2 w-10 h-10"></i>
+              <h3 class="font-bold text-xl mb-1">Language Tutor</h3>
+              <p class="text-muted text-sm">
+                AI-powered language practice with real-time feedback and stats.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CodeVerter View -->
+        <section id="code-verter" class="view-container">
+          <header class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold">
+              CodeVerter
+              <span class="text-sm font-normal text-muted"
+                >Programming Language Converter</span
+              >
+            </h2>
+          </header>
+
+          <div class="card">
+            <div class="flex items-center justify-center gap-4 mb-6">
+              <select
+                id="source-lang"
+                class="input"
+                style="width: auto; min-width: 200px"
+              ></select>
+              <i data-lucide="arrow-right" class="text-muted"></i>
+              <select
+                id="target-lang"
+                class="input"
+                style="width: auto; min-width: 200px"
+              ></select>
+            </div>
+
+            <div class="converter-grid">
+              <div class="code-panel">
+                <div class="code-header">
+                  <span class="text-sm font-medium">Source Code</span>
+                  <span id="source-lang-label" class="text-xs text-muted"
+                    >Python</span
+                  >
+                </div>
+                <textarea
+                  id="source-code"
+                  class="code-editor"
+                  placeholder="Enter your source code here..."
+                ></textarea>
+              </div>
+
+              <div class="code-panel">
+                <div class="code-header">
+                  <span class="text-sm font-medium">Converted Code</span>
+                  <span id="target-lang-label" class="text-xs text-muted"
+                    >JavaScript</span
+                  >
+                </div>
+                <textarea
+                  id="target-code"
+                  class="code-editor"
+                  readonly
+                  placeholder="Converted code will appear here..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="flex justify-center mt-6">
+              <button
+                id="convert-btn"
+                class="btn btn-primary"
+                onclick="handleCodeConversion()"
+              >
+                <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>
+                Convert Code
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- PyLingo View -->
+        <section id="py-lingo" class="view-container">
+          <header class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-2xl font-bold">PyLingo</h2>
+              <div class="flex items-center gap-2 text-sm text-muted">
+                <span>Overall Progress:</span>
+                <span id="overall-progress-text">0%</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="flex items-center gap-1 bg-orange-900/30 text-orange-500 px-3 py-1 rounded-full border border-orange-500/20"
+              >
+                <i data-lucide="flame" class="w-4 h-4"></i>
+                <span id="streak-count" class="font-bold">0</span>
+              </div>
+              <button
+                class="btn btn-secondary py-1 px-3"
+                onclick="toggleLevelSelector()"
+              >
+                Level <span id="current-level-num">1</span>
+              </button>
+            </div>
+          </header>
+
+          <div class="progress-bar mb-6">
+            <div
+              id="progress-fill"
+              class="progress-fill"
+              style="width: 0%"
+            ></div>
+          </div>
+
+          <div id="level-selector" class="card hidden">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="font-bold">Select Level</h3>
+              <button class="text-muted" onclick="toggleLevelSelector()">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+            <div class="level-selector-grid" id="level-grid"></div>
+          </div>
+
+          <div class="converter-grid">
+            <!-- Instructions -->
+            <div class="card">
+              <div class="flex items-center justify-between mb-4">
+                <h3 id="level-title" class="text-xl font-bold">
+                  Level 1: Hello World
+                </h3>
+                <i
+                  id="level-status-icon"
+                  data-lucide="circle"
+                  class="text-muted"
+                ></i>
+              </div>
+              <p id="level-desc" class="text-muted mb-4">
+                Welcome to Python! Let's start with the traditional first
+                program.
+              </p>
+              <div
+                class="bg-indigo-900/20 border-l-4 border-indigo-500 p-4 mb-4 rounded-r"
+              >
+                <h4 class="font-bold text-indigo-400 text-sm mb-1 uppercase">
+                  Task:
+                </h4>
+                <p id="level-task">
+                  Write a program that prints 'Hello, World!' to the console.
+                </p>
+              </div>
+
+              <div
+                id="level-hint-box"
+                class="hidden mt-4 p-4 bg-yellow-900/20 border border-yellow-500/30 rounded"
+              >
+                <h4
+                  class="text-yellow-500 text-sm font-bold flex items-center gap-1 mb-1"
+                >
+                  <i data-lucide="lightbulb" class="w-4 h-4"></i> Hint
+                </h4>
+                <p id="level-hint" class="text-sm text-yellow-200/80"></p>
+              </div>
+
+              <button
+                class="text-indigo-400 text-sm font-medium mt-2 flex items-center gap-1"
+                onclick="toggleHint()"
+              >
+                <span id="hint-toggle-text">Show Hint</span>
+              </button>
+            </div>
+
+            <!-- Editor -->
+            <div class="code-panel">
+              <div class="code-header">
+                <span class="text-sm font-medium">Python Editor</span>
+                <div class="flex gap-2">
+                  <button
+                    class="btn py-1 px-2 text-xs btn-secondary"
+                    onclick="resetLevelCode()"
+                  >
+                    Reset
+                  </button>
+                  <button
+                    id="run-code-btn"
+                    class="btn py-1 px-2 text-xs btn-primary"
+                    onclick="handlePyLingoRun()"
+                  >
+                    <i data-lucide="play" class="w-3 h-3 mr-1"></i> Run
+                  </button>
+                </div>
+              </div>
+              <textarea id="py-editor" class="code-editor"></textarea>
+            </div>
+          </div>
+
+          <div id="py-feedback" class="hidden mt-6 p-4 rounded-lg"></div>
+        </section>
+
+        <!-- Language Tutor View -->
+        <section id="lang-tutor" class="view-container">
+          <header class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <h2 class="text-2xl font-bold">Language Tutor</h2>
+              <select
+                id="tutor-lang-select"
+                class="input py-1 px-2 text-sm"
+                style="width: auto"
+                onchange="handleTutorLangChange(this.value)"
+              >
+                <option value="spanish">🇪🇸 Spanish</option>
+                <option value="french">🇫🇷 French</option>
+                <option value="german">🇩🇪 German</option>
+                <option value="japanese">🇯🇵 Japanese</option>
+              </select>
+              <span
+                id="proficiency-tag"
+                class="bg-green-900/30 text-green-500 text-xs font-bold px-2 py-1 rounded border border-green-500/20"
+                >BEGINNER</span
+              >
+            </div>
+            <button
+              id="mode-toggle"
+              class="btn btn-secondary py-1"
+              onclick="toggleTutorMode()"
+            >
+              Chat Mode
+            </button>
+          </header>
+
+          <div class="flex gap-6">
+            <!-- Chat Area -->
+            <div class="flex-1">
+              <div class="chat-container">
+                <div id="chat-messages" class="messages">
+                  <!-- Welcome Message -->
+                  <div class="text-center py-10 opacity-60" id="chat-welcome">
+                    <div class="text-5xl mb-4" id="lang-flag">🇪🇸</div>
+                    <h3 class="text-xl font-bold">
+                      Ready to practice Spanish?
+                    </h3>
+                    <p>Start a conversation and I'll help you learn!</p>
+                  </div>
+                </div>
+                <div class="chat-input-area">
+                  <input
+                    type="text"
+                    id="chat-input"
+                    class="input"
+                    placeholder="Type your message in Spanish..."
+                    onkeypress="if (event.key === 'Enter') sendTutorMessage();"
+                  />
+                  <button class="btn btn-primary" onclick="sendTutorMessage()">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar Info -->
+            <div class="w-80 space-y-4">
+              <div class="card p-4">
+                <h3 class="font-bold flex items-center gap-2 mb-3">
+                  <i data-lucide="trending-up" class="w-4 h-4 text-primary"></i>
+                  Progress
+                </h3>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-muted">Messages:</span>
+                    <span id="stat-messages">0</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-muted">Vocabulary:</span>
+                    <span id="stat-vocab">0 words</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-muted">Accuracy:</span>
+                    <span id="stat-accuracy">0%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card p-4">
+                <div class="flex justify-between items-center mb-3">
+                  <h3 class="font-bold flex items-center gap-2">
+                    <i data-lucide="target" class="w-4 h-4 text-orange-400"></i>
+                    Goals
+                  </h3>
+                  <button
+                    class="text-xs text-primary"
+                    onclick="addCustomGoal()"
+                  >
+                    + Add
+                  </button>
+                </div>
+                <div id="goals-list" class="space-y-2"></div>
+              </div>
+
+              <div id="realtime-feedback" class="card p-4 hidden">
+                <h3 class="font-bold flex items-center gap-2 mb-3">
+                  <i
+                    data-lucide="message-square"
+                    class="w-4 h-4 text-indigo-400"
+                  ></i>
+                  Feedback
+                </h3>
+                <div id="feedback-content" class="space-y-3"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
